@@ -1,0 +1,220 @@
+.sharePopUp {
+    display: flex;
+    position: absolute;
+    left: 20vw;
+    width: 894px;
+    height: 450px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(18, 18, 18, 0.75);
+    border-radius: 16px;
+}
+
+.closeButton {
+    all: unset;
+    cursor: pointer;
+    width: 100%;
+    text-align: end;
+}   
+
+.inputShareUrl:disabled {
+    background: transparent;
+}
+
+.shareImgPart {
+    flex-grow: 1;
+    background: #F7F7F7;
+    padding: 32px;
+    width: 50%;
+    border-radius: 16px;
+    height: 100%;
+}
+
+
+.shareImgPart>div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgForShare {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    object-fit: contain;
+}
+
+.shareDiv1 {
+    width: 100%;
+    flex-grow: 0.8;
+}
+.shareHeader {
+    width: 157px;
+    height: 28px;
+
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-feature-settings: 'kern' off;
+
+    /* New Colors/Text Light Mode/Base */
+
+    color: #000000;
+
+}
+.shareOptionsPart {
+    flex-grow: 1;
+    padding: 14px 20px 32px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+
+.shareLinkPart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 0.8;
+    justify-content: space-evenly;
+}
+
+.urlPart {
+    box-sizing: border-box;
+
+/* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    gap: 12px;
+
+    width: 380px;
+    height: 48px;
+
+    /* New Colors/Background Light Mode/Positive */
+
+    background: #FFFFFF;
+    /* New Colors/Background Light Mode/Tint 3 */
+
+    border: 2px solid #E3E3E3;
+    border-radius: 12px;
+}
+
+.copyButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 4px;
+
+    width: 92px;
+    height: 32px;
+
+    /* New Colors/Accent Palette Light Mode/Secondary Tint 6 */
+
+    background: #E7DCF9;
+    border-radius: 24px;
+    border: none;
+}
+
+.inputShareUrl {
+    border: none;
+    width: 244px;
+    height: 24px;
+
+    /* BASE 16/Medium */
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    /* New Colors/Text Light Mode/Base */
+
+    color: #000000;
+}
+
+.copyPgh {
+    width: 35px;
+    height: 20px;
+
+    font-weight: 550;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    text-align: center;
+
+    /* New Colors/Accent Light Mode/Secondary */
+
+    color: #5A00EE;
+}
+
+.shareToPart {
+    display: flex;
+    flex-grow: 1;
+    gap: 16px;
+}
+
+.shareQrPart {
+    flex-grow: 0.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.qrPart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
+}
+
+.qrPart > svg {
+    width: 150px;
+}
+
+.qrPgh {
+    width: 436px;
+    height: 20px;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    text-align: center;
+
+    /* Old Colors/Icons And Typography Light Mode/lightIconTypographyPrimary */
+
+    color: #080808;
+}
+
+
+.copyButton:disabled {
+    display: flex;
+    justify-content: flex-start;
+    opacity: 1;
+    background-color: #bfb1d5;
+
+}
+
+.copyButton:disabled .copyPgh {
+    color: #F7F7F7;
+    
+}

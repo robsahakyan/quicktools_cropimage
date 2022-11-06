@@ -1,0 +1,73 @@
+.startoverWindow {
+   visibility: hidden;
+   position: absolute;
+   display: flex;
+   left: 30vw;
+   top: 30vh;
+   align-items: center;
+   justify-content: center;
+   background: #FFFFFF;
+   border-radius: 8px;
+   gap: 32px;
+   padding: 32px;
+   width: 500px;
+   height: 156px;
+   flex-direction: column;
+   justify-content: space-evenly;
+}
+
+.startOverDiv2 {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.startOverDiv1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+
+    display: flex;
+    align-items: center;
+
+    /* Old Colors/Main Light mode/lightBackgroundSecondary */
+
+    color: #121212;
+}
+
+.startOverCancel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 16px;
+    gap: 10px;
+
+    width: 79px;
+    height: 32px;
+    color: #000000;
+
+    border: 2px solid #000000;
+    border-radius: 16px;
+}
+
+.startOverAcception {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 16px;
+    gap: 10px;
+
+    width: 98px;
+    height: 32px;
+    color: #FFFFFF;
+    border: none;
+    /* Old Colors/Main Light mode/lightAccentPrimaryMain */
+
+    background: #C209C1;
+    border-radius: 16px;
+}
+

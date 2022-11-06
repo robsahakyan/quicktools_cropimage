@@ -1,0 +1,137 @@
+.processPart {
+    width: calc(960/1440 * 100%);
+    height: 100%;
+    background: #F4F5F8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 50px;
+}
+
+.processDiv1 {
+    display: flex;
+    width: 70%;
+    align-self: flex-end;
+    justify-content: space-around;
+}
+
+.processActionButtons {
+    all: unset;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.processDiv2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.imgForEdit {
+    width: 100%;
+    height: inherit;
+}
+
+.imgActionsPart {
+    display: flex;
+    gap: 10px;
+}
+
+.customButton {
+    display: flex;
+}
+.customButPart {
+    display: flex;
+    padding: 8px 16px;
+    gap: 8px;
+    align-items: center;
+    width: 182px;
+    height: 40px;
+    left: 407px;
+    top: 84px;
+
+    /* New Colors/Accent Light Mode/Primary */
+    border: none    ;
+    background: #F4F5F8;
+    border-radius: 24px;
+    border: solid 1px #C209C1;
+}
+.customIcon {
+    color: #C209C1;
+}
+
+.customButtPgh {
+    font-weight: 550;
+    font-size: 16px;
+    width: 152px;
+    line-height: 22px;
+    color: #C209C1;
+}
+
+.cropButton {
+    display: flex;
+    padding: 8px 16px;
+    gap: 8px;
+    align-items: center;
+    width: 145px;
+    height: 40px;
+    left: 407px;
+    top: 84px;
+
+    /* New Colors/Accent Light Mode/Primary */
+    border: none    ;
+    background: #C209C1;
+    border-radius: 24px;
+}
+
+.alertMessage {
+    background: #158380;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 12px;
+    height: 48px;
+}
+
+.anticon svg {
+    color: #FFFFFF;
+}
+
+.cropButtonPgh {
+
+    font-style: normal;
+    font-weight: 550;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    text-align: center;
+
+    /* New Colors/Accent Light Mode/Primary */
+
+    color: #FFFFFF;
+}
+
+
+
+.parentImgForCrop {
+   max-width: 500px;
+   max-height: 500px;
+   object-fit: contain;
+
+}
+
+.parentImgForCrop> div {
+    width: 100%;
+    height: 100%;
+}
+
+
+.parentImgForCrop>div>img {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    object-fit: contain;
+}

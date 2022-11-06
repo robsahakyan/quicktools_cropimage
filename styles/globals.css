@@ -1,0 +1,75 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+.divForPopUp {
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+svg {
+  color: #FFFFFF;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input[type="number" i] {
+  width: 100%;
+  height: 24px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  display: flex;
+  align-items: center;
+
+  /* New Colors/Text Light Mode/Tint 2 */
+
+  color: #808080;
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+input[type="radio"]:checked+label>div { border: 1.83126px solid #5A00EE; }
+
+input[type="radio"]:checked+label>div>div>div { color:  #5A00EE; }
+
+
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
