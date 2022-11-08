@@ -1,246 +1,237 @@
 .settingsPart {
-    width: calc(480/1440 * 100%);
-    background: #FFFFFF;
-    height: 100%;
-    padding: 12px 40px 40px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  background: #ffffff;
+  padding: 15px 40px 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .settingsDiv1 {
-    width: 186px;
-    flex-grow: 1;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 40px;
-    /* identical to box height, or 167% */
-
-    font-feature-settings: 'kern' off;
-
-    color: #000000;
-
+  font-family: "Gilroy-semibold";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  font-feature-settings: "kern" off;
+  color: #000000;
+  margin-bottom: 24px;
 }
+.settingsDiv1 + div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 32px;
+  margin-bottom: 211px;
+}
+
+.settingsDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+}
+
 .settingsDiv2 {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-grow: 1;
+  display: flex;
+  align-items: center;
+  column-gap: 19px;
 }
 
 .settingsDiv2Pgh {
-    width: 120px;
-    height: 20px;
-    left: 0px;
-    top: calc(50% - 20px/2 - 101px);
-
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    /* identical to box height, or 143% */
-
-    font-feature-settings: 'kern' off;
-
-    color: #000000;
+  font-family: "Gilroy-semibold";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+  opacity: 0.5;
+  font-feature-settings: "kern" off;
 }
+
 .settingsDiv2Icon {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  color: #949494;
 }
+
 .settingsDiv3 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    flex-grow: 0.5;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 8px;
+}
+.optionsPart,
+.disabledDiv {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12vmin;
+  padding: 0 12px;
+  border: 1.8px solid #e0e0e0;
+  border-radius: 7.3px;
+  cursor: pointer;
 }
 
 .options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .options > div {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    /* identical to box height, or 133% */
-
-    text-align: center;
-
-    /* Old Colors/Icons And Typography Light Mode/lightIconTypographyTetriary */
-
-    color: #949494;
+  font-family: "Gilroy-regular";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  font-feature-settings: "kern" off;
+  color: #949494;
 }
-.optionsPart , .disabledDiv {
-    all: unset;
-    box-sizing: border-box;
 
-    /* Auto layout */
+.settingsDiv4 {
+  display: flex;
+  flex-grow: 2;
+  align-items: center;
+  gap: 1.188rem;
+}
 
+.disabledDiv {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.inputNum:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.measurePart {
+  display: flex;
+  flex-direction: column;
+}
+.measureIconPart {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.measureIcon {
+  width: 12.43px;
+  height: 23.27px;
+}
+.measurePgh {
+  font-family: "Gilroy-regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  font-feature-settings: "kern" off;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.measureInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+.optionIcons {
+  width: 24px;
+  height: 24px;
+}
+
+.inputNum {
+  border: none;
+}
+.inputNum:focus-visible {
+  outline: none;
+}
+
+.shareButton,
+.downloadButton {
+  display: flex;
+}
+
+.settingDiv5Button {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3% 0;
+  gap: 8px;
+  border-radius: 8px;
+  border: none;
+  border: 1px solid #c209c1;
+}
+
+.settingsDiv5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.settingDiv5Context {
+  font-family: "Gilroy-semibold";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #c209c1;
+}
+
+#downloadButton {
+  background: #c209c1;
+}
+#downloadContext {
+  color: #ffffff;
+}
+
+.pixelText {
+  all: unset;
+  font-family: "Gilroy-regular";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #949494;
+}
+@media (max-width: 1100px) {
+  .settingsDiv4 {
+    width: 100%;
+    justify-content: center;
+  }
+  .settingDiv5Button {
+    width: 80%;
+    padding: 2% 0;
+  }
+  .settingsDiv1 + div {
+    margin-bottom: 24px;
+  }
+  .settingsDiv3 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+    overflow-x: scroll;
+  }
+  .optionsPart,
+  .disabledDiv {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 12px;
-
-    width: 93.5px;
-    height: 93px;
-    border: 1.83126px solid #E0E0E0;
-    border-radius: 7.32504px;
-    cursor: pointer;
-}
-
-
-.settingsDiv4 {
-    display: flex;
-    flex-grow: 2;
-    align-items: center;
-    gap: 1.188rem;
-    
-}
-
-.disabledDiv {
-    cursor: not-allowed;
-    opacity: 0.5;
-}
-
-.inputNum:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.measurePart {
-    display: flex;
-    flex-direction: column;
-
-}
-.measureIconPart {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-}
-.measureIcon {
-    width: 12.43px;
-    height: 23.27px;
-    
-}
-.measurePgh {
-    width: 80px;
-    height: 20px;
-
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    /* identical to box height, or 143% */
-
-
-    color: #000000;
-
-}
-
-.measureInput {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    gap: 10px;
-    margin-top: 7px;
-
-
-    width: 174px;
-    height: 48px;
-
-    border: 2px solid #E0E0E0;
-    border-radius: 8px;
-}
-.optionIcons {
-    width: 24px;
-    height: 24px;
-}
-
-.inputNum {
-    border: none;
-}
-.inputNum:focus-visible {
-    outline: none;
-}
-
-.shareButton, .downloadButton {
-    display: flex;
-}
-
-.settingDiv5Button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 24px;
     gap: 8px;
-    border-radius: 8px;
-    border: none;
-    width: 194px;
-    height: 56px;
-}
-
-.settingsDiv5 {
-    display: flex;
-    gap: 12px;
-    flex-grow: 2;
-    align-items: flex-end;
-}
-.settingDiv5Context {
-    width: 95px;
-    height: 24px;
-
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 24px;
-    /* identical to box height, or 150% */
-
-    text-align: center;
-
-    /* New Colors/Accent Light Mode/Primary */
-
-    color: #C209C1;
-
-}
-
-#downloadButton {
-    background: #C209C1;
-    
-}
-#downloadContext {
-    color: #FFFFFF;
-}
-
-
-
-.pixelText {
-    all: unset;
-    margin-block-start: 0em;
-    margin-block-end: 0.5em;
-    width: 19px;
-    height: 24px;
-  
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    /* identical to box height, or 150% */
-  
-    display: flex;
-    align-items: center;
-  
-    /* Old Colors/Icons And Typography Light Mode/lightIconTypographyTetriary */
-  
-    color: #949494;
+    width: 80px;
+    height: 80px;
   }
+  .settingsPart {
+    padding: 10px 20px 20px;
+  }
+}
