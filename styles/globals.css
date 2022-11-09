@@ -1,10 +1,28 @@
+@import "../src/components/styles/base/fonts.css";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Gilroy-regular", sans-serif;
+  width: 100%;
+  height: 100%;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
 .divForPopUp {
   position: absolute;
   width: 100%;
@@ -13,19 +31,14 @@ body {
   align-items: center;
   justify-content: center;
 }
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
 button:disabled {
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 
 svg {
-  color: #FFFFFF;
+  color: #ffffff;
 }
-
 
 button {
   cursor: pointer;
@@ -52,17 +65,13 @@ input[type="number" i] {
   color: #808080;
 }
 
-
-
-* {
-  box-sizing: border-box;
+input[type="radio"]:checked + label > div {
+  border: 1.83126px solid #5a00ee;
 }
 
-input[type="radio"]:checked+label>div { border: 1.83126px solid #5A00EE; }
-
-input[type="radio"]:checked+label>div>div>div { color:  #5A00EE; }
-
-
+input[type="radio"]:checked + label > div > div > div {
+  color: #5a00ee;
+}
 
 @media (prefers-color-scheme: dark) {
   html {

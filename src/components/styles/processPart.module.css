@@ -1,137 +1,167 @@
+.containerProcess {
+  background: #f4f5f8;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.makeToEdit {
+  max-width: 1440px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin: 0 auto;
+}
+
 .processPart {
-    width: calc(960/1440 * 100%);
-    height: 100%;
-    background: #F4F5F8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f4f5f8;
+  padding: 0 10%;
+  padding-top: 24px;
 }
 
 .processDiv1 {
-    display: flex;
-    width: 70%;
-    align-self: flex-end;
-    justify-content: space-around;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.processDiv1 div:nth-child(2) {
+  justify-self: center;
 }
 
 .processActionButtons {
-    all: unset;
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
+  all: unset;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 
 .processDiv2 {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-
 .imgForEdit {
-    width: 100%;
-    height: inherit;
+  width: 100%;
 }
 
 .imgActionsPart {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
-.customButton {
-    display: flex;
+.leftPointerPart,
+.rightPointerPart {
+  opacity: 0.5;
 }
+
 .customButPart {
-    display: flex;
-    padding: 8px 16px;
-    gap: 8px;
-    align-items: center;
-    width: 182px;
-    height: 40px;
-    left: 407px;
-    top: 84px;
-
-    /* New Colors/Accent Light Mode/Primary */
-    border: none    ;
-    background: #F4F5F8;
-    border-radius: 24px;
-    border: solid 1px #C209C1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+  background: #f4f5f8;
+  border-radius: 24px;
+  border: solid 1px #c209c1;
+  white-space: nowrap;
 }
+
 .customIcon {
-    color: #C209C1;
+  color: #c209c1;
 }
 
 .customButtPgh {
-    font-weight: 550;
-    font-size: 16px;
-    width: 152px;
-    line-height: 22px;
-    color: #C209C1;
+  font-family: "Gilroy-medium";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  font-feature-settings: "kern" off;
+  color: #c209c1;
 }
 
 .cropButton {
-    display: flex;
-    padding: 8px 16px;
-    gap: 8px;
-    align-items: center;
-    width: 145px;
-    height: 40px;
-    left: 407px;
-    top: 84px;
-
-    /* New Colors/Accent Light Mode/Primary */
-    border: none    ;
-    background: #C209C1;
-    border-radius: 24px;
+  display: flex;
+  padding: 8px 16px;
+  gap: 8px;
+  align-items: center;
+  border: none;
+  background: #c209c1;
+  border-radius: 24px;
 }
 
 .alertMessage {
-    background: #158380;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 12px;
-    height: 48px;
+  background: #158380;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  height: 48px;
 }
 
 .anticon svg {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 
 .cropButtonPgh {
-
-    font-style: normal;
-    font-weight: 550;
-    font-size: 16px;
-    line-height: 24px;
-    /* identical to box height, or 150% */
-
-    text-align: center;
-
-    /* New Colors/Accent Light Mode/Primary */
-
-    color: #FFFFFF;
+  font-family: "Gilroy-medium";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
 }
-
-
 
 .parentImgForCrop {
-   max-width: 500px;
-   max-height: 500px;
-   object-fit: contain;
-
+  min-width: 500px;
+  min-height: 500px;
+  max-height: 500px;
+  object-fit: contain;
 }
 
-.parentImgForCrop> div {
-    width: 100%;
-    height: 100%;
+.parentImgForCrop > div {
+  width: 100%;
+  height: 100%;
 }
 
+.parentImgForCrop > div > img {
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  object-fit: contain;
+}
 
-.parentImgForCrop>div>img {
-    width: -webkit-fill-available;
-    height: -webkit-fill-available;
-    object-fit: contain;
+@media (max-width: 450px) {
+  .processDiv1 div:nth-child(2) {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 680px) {
+  .parentImgForCrop {
+    min-width: 300px;
+    min-height: 300px;
+    max-height: 300px;
+  }
+  .processDiv1 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .processDiv1 div:nth-child(2) {
+    justify-self: left;
+  }
+  .hiddenDiv {
+    display: none;
+  }
+}
+@media (max-width: 1100px) {
+  .makeToEdit {
+    display: block;
+  }
 }
