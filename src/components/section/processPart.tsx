@@ -13,35 +13,29 @@ import 'react-image-crop/dist/ReactCrop.css'
 import { useRef } from 'react';
 import { StartOver } from '../popup/startover';
 import { setDefaultCustomVals, setNullableValls } from '../../utils';
-import { LocalStorageService } from '../../shared/localStorageService';
 
 export const ProcessPart: any = (props: any) => {
+  const popUpRef = useRef<HTMLElement>(null);
+  // useEffect(() => {
+  //     setCropCoordinates(props.cropProperties)
+  // },[props.cropProperties])
+  // const [cropCoordinates, setCropCoordinates] = useState<Crop>(props.cropProperties);
+  const imageRef = useRef<any>(null);
 
-    const popUpRef = useRef<HTMLElement>(null)
-    // useEffect(() => {
-    //     setCropCoordinates(props.cropProperties)
-    // },[props.cropProperties])
-    // const [cropCoordinates, setCropCoordinates] = useState<Crop>(props.cropProperties);
-    const imageRef = useRef<any>(null);
+  const setToCropImage = (e: any) => {
+    props.changeCoordinates(e);
+  };
 
-    const setToCropImage = (e: any) => {
-        props.changeCoordinates(e)
+  const refreshHandler = () => {
+    if (popUpRef.current) {
+      popUpRef.current.style.visibility = "visible";
     }
+  };
 
-  
-
-    const refreshHandler = () => {
-        if (popUpRef.current) {
-            popUpRef.current.style.visibility = "visible";
-        }
-    }
-
-    const imgOnLoad = (e: any) => {
-        const { offsetHeight, offsetWidth } = e.target;
-        props.setImageProperties({offsetHeight, offsetWidth})
-
-    }
-
+  const imgOnLoad = (e: any) => {
+    const { offsetHeight, offsetWidth } = e.target;
+    props.setImageProperties({ offsetHeight, offsetWidth });
+  };
 
     const setToCrop = () => {
         props.setToCropBut(true)
@@ -52,9 +46,10 @@ export const ProcessPart: any = (props: any) => {
     async function cropHandler(e: any) {
         props.setToFetching(true)
         if (imageRef && props.cropProperties.width && props.cropProperties.height) {
-            props.uploadImage(await getCroppedImg(
+            props.setImagePath(await getCroppedImg(
               imageRef.current,
-              props.cropProperties
+              props.cropProperties,
+              '1'
             ));
             props.setToCropBut(false)
             props.changeCoordinates(setNullableValls)
@@ -67,62 +62,49 @@ export const ProcessPart: any = (props: any) => {
         }
     }
 
-    const changeImgState = (e: any) => {
-        let index: number;
-        switch(e.target.id) {
-            case 'prevShift':
-                index = props.aboutImage.currentImgIndex - 1;
-                return props.setImagePath({imgPath: LocalStorageService.getById(index), currentImgIndex: index})
-            case 'nextShift':
-                index = props.aboutImage.currentImgIndex + 1;
-                return props.setImagePath({imgPath: LocalStorageService.getById(index), currentImgIndex: index})
-            default: 
-                return;
-        }
-    }
-
-    const getCroppedImg = async (image: any, crop: {width: number, height: number, x: number, y: number}) => {
+    const getCroppedImg = async (image: any, crop: {width: number, height: number, x: number, y: number}, fileName: string) => {
         const canvas = document.createElement('canvas');
         const pixelRatio = window.devicePixelRatio;
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
         const ctx = canvas.getContext('2d');
+        console.log(pixelRatio, scaleX, scaleY, ctx)
 
-        canvas.width = crop.width * pixelRatio * scaleX;
-        canvas.height = crop.height * pixelRatio * scaleY;
-    
-        if (ctx) {
-            ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-            ctx.imageSmoothingQuality = 'high';
-        
-            ctx.drawImage(
-              image,
-              crop.x * scaleX,
-              crop.y * scaleY,
-              crop.width * scaleX,
-              crop.height * scaleY,
-              0,
-              0,
-              crop.width * scaleX,
-              crop.height * scaleY
-            );
-        }
-     
-        return new Promise((resolve, reject) => {
-          canvas.toBlob(
-            (blob) => {
-              if (!blob) {
-                //reject(new Error('Canvas is empty'));
-                console.error('Canvas is empty');
-                return;
-              }
-              resolve(window.URL.createObjectURL(blob));
-            },
-            'image/jpeg',
-            1
-          );
-        });
-      }
+    canvas.width = crop.width * pixelRatio * scaleX;
+    canvas.height = crop.height * pixelRatio * scaleY;
+
+    if (ctx) {
+      ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      ctx.imageSmoothingQuality = "high";
+
+      ctx.drawImage(
+        image,
+        crop.x * scaleX,
+        crop.y * scaleY,
+        crop.width * scaleX,
+        crop.height * scaleY,
+        0,
+        0,
+        crop.width * scaleX,
+        crop.height * scaleY
+      );
+    }
+
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) {
+            //reject(new Error('Canvas is empty'));
+            console.error("Canvas is empty");
+            return;
+          }
+          resolve(window.URL.createObjectURL(blob));
+        },
+        "image/jpeg",
+        1
+      );
+    });
+  };
 
     return (
         <div className={styles.processPart}>
@@ -148,13 +130,13 @@ export const ProcessPart: any = (props: any) => {
                         </div>
                         <div className={styles.imgActionsPart}>
                             <div className={styles.leftPointerPart}>
-                                <button className={styles.processActionButtons} onClick={changeImgState}>
-                                    <Image src={leftPointer} alt="leftPointer" className={styles.leftButton} id='prevShift'/>
+                                <button className={styles.processActionButtons}>
+                                    <Image src={leftPointer} alt="leftPointer" className={styles.leftButton}/>
                                 </button>
                             </div>
                             <div className={styles.rightPointerPart}>
-                                <button className={styles.processActionButtons} onClick={changeImgState}>
-                                    <Image src={rightPointer} alt="rightPointer" className={styles.rightButton} id='nextShift'/>
+                                <button className={styles.processActionButtons}>
+                                    <Image src={rightPointer} alt="rightPointer" className={styles.rightButton}/>
                                 </button>
                             </div>
                             <div className={styles.refreshPart}>
@@ -171,7 +153,7 @@ export const ProcessPart: any = (props: any) => {
                     </div>
                     <div className={styles.processDiv2}>
                         <div className={styles.imgPart}>
-                        <ReactCrop crop={props.cropProperties} onChange={setToCropImage} className={styles.parentImgForCrop} disabled={!props.isEnabled}>
+                        <ReactCrop crop={props.cropProperties} onChange={setToCropImage} className={styles.parentImgForCrop} disabled={!props.isEnabled} >
                             <img className={styles.imgForEdit} src={props.aboutImage.imgPath} alt="imgForCropping" onLoad={imgOnLoad} ref={imageRef} />
                         </ReactCrop>
                         </div>

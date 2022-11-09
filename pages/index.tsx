@@ -23,8 +23,8 @@ export type GlobalProps = {
     changeOptions: ChangeOptions,
     changeCoordinates: ChangeCoordinates,
     setImageProperties: SetImageProperties
-
 }
+
 const Home: any = (props: GlobalProps) => {
   return (
     <div>
@@ -35,14 +35,12 @@ const Home: any = (props: GlobalProps) => {
       </Head>
 
       <main>
-        <Header {...props}/>
-        <Section {...props}/>
+        <Header {...props} />
+        <Section {...props} />
       </main>
-      
     </div>
-  )
-}
-
+  );
+};
 
 const mapStateToProps = (state: any) => {
   return {
@@ -53,9 +51,9 @@ const mapStateToProps = (state: any) => {
     cropOptions: state.image.cropOptions,
     isReadyToEdit: state.image.isReadyToEdit,
     isReadyToShare: state.image.isReadyToShare,
-    error: state.image.error
-  }
-}
+    error: state.image.error,
+  };
+};
 
 export default connect(mapStateToProps, {
   setImagePath: setImagePathAC,
@@ -68,5 +66,5 @@ export default connect(mapStateToProps, {
   setToFetching,
   uploadImage,
   setToShare,
-  setToEdit
-})(Home)
+  setToEdit,
+})(Home);

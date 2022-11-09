@@ -7,7 +7,6 @@ import styles from '../styles/section.module.css'
 import { ErrorComponent } from '../exception/error'
 import { LocalStorageService } from '../../shared/localStorageService'
 
-
 export const Section: any = (props: GlobalProps ) => {
     if (typeof window !== 'undefined') {
         window.onbeforeunload = function () {

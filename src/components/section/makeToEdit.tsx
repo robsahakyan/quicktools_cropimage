@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
-import { ProcessPart } from './processPart';
+import React, { useRef, useState } from "react";
+import { ProcessPart } from "./processPart";
 //import ReactCrop from 'react-image-crop'
-import styles from '../styles/section.module.css'
-import { SettingsPart } from './settingsPart';
+import styles from "../styles/processPart.module.css";
+import { SettingsPart } from "./settingsPart";
 //import {Loader} from "../../shared/loader.jsx"
 
 export const MakeToEdit: any = (props: any) => {
