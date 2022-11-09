@@ -41,9 +41,29 @@ export const SettingsPart: any = (props: any) => {
     }
   }
 
-  const inputNumChange = (e: any) => {
-    return {};
-  };
+    const inputNumChange = (e: any)  => {
+        const {offsetWidth, offsetHeight} = props.imageProperties;
+        const {x, y} = props.cropProperties;
+
+        switch(e.target.name) {
+            case "width": 
+                if ((offsetWidth - x)  < e.target.value) {
+                    return;
+                }
+                break;
+            case "height": 
+                if ((offsetHeight - y) < e.target.value) {
+                    return;
+                }
+                break;
+            default: break;
+        }
+
+        props.changeCoordinates({
+            ...props.cropProperties,
+            [e.target.name]: +e.target.value
+        })
+    }
 
   const downloadHandler = (e: any) => {
     fetch(props.aboutImage.imgPath, {
@@ -119,29 +139,91 @@ export const SettingsPart: any = (props: any) => {
                   />
                   <div>1:1</div>
                 </div>
-              </div>
-            </label>
-            <input
-              type="radio"
-              name="options"
-              id="3"
-              checked={cropOptions.threeInTwo}
-              onChange={changeRadio}
-              value="threeInTwo"
-              style={{ display: "none" }}
-              className={styles.radioButton}
-            ></input>
-            <label htmlFor="3" className={styles.radioLabel}>
-              <div
-                className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}
-              >
-                <div className={styles.options}>
-                  <Image
-                    src={threeintwo}
-                    alt="threeintwo"
-                    className={styles.optionIcons}
-                  />
-                  <div>3:2</div>
+            </div>
+            <div className={styles.settingsDiv3}>
+                <input type='radio'  name="options" id='1' checked={cropOptions.custom} onChange={changeRadio} value="custom" style={{display: "none"}} className={styles.radioButton}></input>
+                <label htmlFor="1" className={styles.radioLabel}>
+                    <div className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}>
+                        <div className={styles.options}>
+                            <Image src={custom} alt='custom' className={styles.optionIcons}/>
+                            <div>Custom</div>
+                        </div>
+                    </div>
+                </label>
+                <input type='radio' name="options" id='2' checked={cropOptions.oneInOne} onChange={changeRadio} value="oneInOne" style={{display: "none"}} className={styles.radioButton}></input>
+                <label htmlFor="2" className={styles.radioLabel}>
+                    <div className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}>
+                        <div className={styles.options}>
+                            <Image src={oneInone} alt='oneInone' className={styles.optionIcons} />
+                            <div>1:1</div>
+                        </div>
+                    </div>
+                </label>
+                <input type='radio' name="options" id='3' checked={cropOptions.threeInTwo} onChange={changeRadio} value="threeInTwo" style={{display: "none"}} className={styles.radioButton}></input>
+                <label htmlFor="3" className={styles.radioLabel}>
+                    <div className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}>
+                        <div className={styles.options}>
+                            <Image src={threeintwo} alt='threeintwo' className={styles.optionIcons} />
+                            <div>3:2</div>
+                        </div>
+                    </div>
+                </label>
+                
+                <input type='radio' name="options" id='4' checked={cropOptions.twoInThree} onChange={changeRadio} value="twoInThree" style={{display: "none"}} className={styles.radioButton}></input>
+                <label htmlFor="4" className={styles.radioLabel}>
+                    <div className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}>
+                        <div className={styles.options}>
+                            <Image src={twointhree} alt='twointhree' className={styles.optionIcons}/>
+                            <div>2:3</div>
+                        </div>
+                    </div>
+                </label>
+                <input type='radio' name="options" id='5' checked={cropOptions.fourInThree} onChange={changeRadio} value="fourInThree" style={{display: "none"}} className={styles.radioButton}></input>
+                <label htmlFor="5" className={styles.radioLabel}>
+                    <div className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}>
+                        <div className={styles.options}>
+                            <Image src={fourinthree} alt='fourinthree' className={styles.optionIcons}/>
+                            <div>4:3</div>
+                        </div>
+                    </div>
+                </label>
+                <input type='radio' name="options" id='6' checked={cropOptions.threeInFour} onChange={changeRadio} value="threeInFour" style={{display: "none"}} className={styles.radioButton}></input>
+                <label htmlFor="6" className={styles.radioLabel}>
+                    <div className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}>
+                        <div className={styles.options}>
+                            <Image src={threeinfour} alt='threeinfour' className={styles.optionIcons} />
+                            <div>3:4</div>
+                        </div>
+                    </div>
+                </label>
+                <input type='radio' name="options" id='7' checked={cropOptions.nineInSixteen} onChange={changeRadio} value="nineInSixteen" style={{display: "none"}} className={styles.radioButton}></input>
+                <label htmlFor="7" className={styles.radioLabel}>
+                    <div className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}>
+                        <div className={styles.options}>
+                            <Image src={nineinsixteen} alt='nineinsixteen' className={styles.optionIcons}/>
+                            <div>9:16</div>
+                        </div>
+                    </div>
+                </label>
+                <input type='radio' name="options" id='8' checked={cropOptions.sixteenInNine} onChange={changeRadio} value="sixteenInNine" style={{display: "none"}} className={styles.radioButton}></input>
+                <label htmlFor="8" className={styles.radioLabel}>
+                    <div className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}>
+                        <div className={styles.options}>
+                            <Image src={sixteeninnine} alt='sixteeninnine' className={styles.optionIcons}/>
+                            <div>16:9</div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <div className={styles.settingsDiv4}>
+                <div className={styles.measurePart}>
+                    <div className={styles.measurePgh}>
+                        Enter Width
+                    </div>
+                    <div className={styles.measureInput}>
+                        <input type='number' name='width' className={styles.inputNum} onChange={inputNumChange} value={Math.round(props.cropProperties.width) || 0} step='1'></input>
+                        <p className={styles.pixelText}>px</p>
+                    </div>
                 </div>
               </div>
             </label>
@@ -168,29 +250,14 @@ export const SettingsPart: any = (props: any) => {
                   />
                   <div>2:3</div>
                 </div>
-              </div>
-            </label>
-            <input
-              type="radio"
-              name="options"
-              id="5"
-              checked={cropOptions.fourInThree}
-              onChange={changeRadio}
-              value="fourInThree"
-              style={{ display: "none" }}
-              className={styles.radioButton}
-            ></input>
-            <label htmlFor="5" className={styles.radioLabel}>
-              <div
-                className={props.isEnabled ? styles.optionsPart : styles.disabledDiv}
-              >
-                <div className={styles.options}>
-                  <Image
-                    src={fourinthree}
-                    alt="fourinthree"
-                    className={styles.optionIcons}
-                  />
-                  <div>4:3</div>
+                <div className={styles.measurePart}>
+                    <div className={styles.measurePgh}>
+                        Enter Height
+                    </div>
+                    <div className={styles.measureInput}>
+                        <input type='number' name='height' className={styles.inputNum}  onChange={inputNumChange} value={Math.round(props.cropProperties.height) || 0} step='1'></input>
+                        <p className={styles.pixelText}>px</p>
+                    </div>
                 </div>
               </div>
             </label>

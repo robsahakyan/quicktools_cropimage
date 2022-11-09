@@ -5,13 +5,13 @@ import descriptionImg from "../../assets/images/uploadPage/1.png";
 import dropboxImg from "../../assets/images/uploadPage/dropbox.svg";
 import googledriveImg from "../../assets/images/uploadPage/googledrive.svg";
 import { useRef } from "react";
-import type { SetImagePath, SetToEdit, SetToFetching } from "../../types/actions";
+import type { SetToEdit, SetToFetching, UploadImage } from "../../types/actions";
 
 type FileUploadProps = {
-  setToEdit: SetToEdit;
-  setImagePath: SetImagePath;
-  setToFetching: SetToFetching;
-};
+    setToEdit: SetToEdit,
+    setImagePath: SetImagePath,
+    setToFetching: SetToFetching
+}
 
 export const FileUpload: any = (props: FileUploadProps) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -23,15 +23,17 @@ export const FileUpload: any = (props: FileUploadProps) => {
     const file = (e.target as HTMLFormElement).files[0];
     const fileReader = new FileReader();
 
-    fileReader.readAsDataURL(file);
+        fileReader.readAsDataURL(file);
+    
+        fileReader.onload = () => {
+            props.setImagePath(fileReader.result);
+        }
+        
+        
+        props.setToEdit(true);
+        props.setToFetching(true);
+    }
 
-    fileReader.onload = () => {
-      props.setImagePath(fileReader.result);
-    };
-
-    props.setToEdit(true);
-    props.setToFetching(true);
-  };
 
   const dragOver = (e: React.SyntheticEvent<EventTarget>) => {
     // e.preventDefault();
