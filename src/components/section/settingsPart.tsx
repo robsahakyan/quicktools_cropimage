@@ -40,7 +40,27 @@ export const SettingsPart: any = (props: any) => {
     }
 
     const inputNumChange = (e: any)  => {
-        return {}
+        const {offsetWidth, offsetHeight} = props.imageProperties;
+        const {x, y} = props.cropProperties;
+
+        switch(e.target.name) {
+            case "width": 
+                if ((offsetWidth - x)  < e.target.value) {
+                    return;
+                }
+                break;
+            case "height": 
+                if ((offsetHeight - y) < e.target.value) {
+                    return;
+                }
+                break;
+            default: break;
+        }
+
+        props.changeCoordinates({
+            ...props.cropProperties,
+            [e.target.name]: +e.target.value
+        })
     }
 
     const downloadHandler = (e: any) => {
@@ -157,7 +177,7 @@ export const SettingsPart: any = (props: any) => {
                         Enter Width
                     </div>
                     <div className={styles.measureInput}>
-                        <input type='number' disabled={true} className={styles.inputNum} onChange={inputNumChange} value={Math.round(props.cropProperties.width) || 0} step='1'></input>
+                        <input type='number' name='width' className={styles.inputNum} onChange={inputNumChange} value={Math.round(props.cropProperties.width) || 0} step='1'></input>
                         <p className={styles.pixelText}>px</p>
                     </div>
                 </div>
@@ -169,7 +189,7 @@ export const SettingsPart: any = (props: any) => {
                         Enter Height
                     </div>
                     <div className={styles.measureInput}>
-                        <input type='number' disabled={true} className={styles.inputNum}  onChange={inputNumChange} value={Math.round(props.cropProperties.height) || 0} step='1'></input>
+                        <input type='number' name='height' className={styles.inputNum}  onChange={inputNumChange} value={Math.round(props.cropProperties.height) || 0} step='1'></input>
                         <p className={styles.pixelText}>px</p>
                     </div>
                 </div>

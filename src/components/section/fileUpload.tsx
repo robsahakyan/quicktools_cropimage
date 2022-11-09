@@ -5,11 +5,11 @@ import descriptionImg from '../../assets/images/uploadPage/1.png'
 import dropboxImg from '../../assets/images/uploadPage/dropbox.png'
 import googledriveImg from '../../assets/images/uploadPage/googledrive.png'
 import { useRef } from "react";
-import type { SetImagePath, SetToEdit, SetToFetching } from "../../types/actions";
+import type { SetToEdit, SetToFetching, UploadImage } from "../../types/actions";
 
 type FileUploadProps = {
     setToEdit: SetToEdit,
-    setImagePath: SetImagePath,
+    uploadImage: UploadImage,
     setToFetching: SetToFetching
 }
 
@@ -27,7 +27,7 @@ export const FileUpload: any = (props: FileUploadProps) => {
         fileReader.readAsDataURL(file);
     
         fileReader.onload = () => {
-            props.setImagePath(fileReader.result);
+            props.uploadImage(fileReader.result);
         }
         
         

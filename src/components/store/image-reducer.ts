@@ -1,4 +1,5 @@
 import { sendImageRequest, deleteImg } from "../../api/api";
+import { LocalStorageService } from "../../shared/localStorageService";
 import { ActionTypeEnum } from "../../types/enums";
 
 
@@ -48,12 +49,12 @@ export const imageReducer = (state = initialState, action: any) => {
     switch(action.type) {
         case SET_IMAGE_PATH:
             return {
-                ...state,
-                aboutImage: { 
-                    ...state.aboutImage,
-                    ...action.data
+                    ...state,
+                    aboutImage: { 
+                        ...state.aboutImage,
+                        ...action.data
+                    }
                 }
-            }
         case SET_IMAGE_PROPERTIES: 
             return {
                 ...state,
@@ -104,36 +105,18 @@ export const setImagePropertiesAC = (imgOptions: object) => ({type: SET_IMAGE_PR
 export const changeOptionsAC = (cropOptions: object) => ({type: CHANGE_CROP_OPTIONS, cropOptions})
 
 export const uploadImage = (fileAsBinaryString: any) => {
-    const data = new FormData();
-
     return (dispatch: any) => {
-        dispatch(setImagePathAC({imgPath: fileAsBinaryString, filename: '1'}));
-        dispatch(setToFetching(false));
-        window.localStorage.setItem('1', fileAsBinaryString)
-        window.localStorage.setItem('aboutImage', JSON.stringify(['1']))
+        const singleImg = new LocalStorageService(fileAsBinaryString);
+        console.log(singleImg)
+        if (singleImg) {
+            singleImg.save()
+            dispatch(setImagePathAC(singleImg));
+            dispatch(setToFetching(false));
+        } else {
+            dispatch(createErrorAC('Something went wrong!'))
+        }
     }
 }
-
-// export const cropImageThunk = (cropProperties) => {
-//     return (dispatch) => {
-//         cropImagePostRequest(cropProperties).then(res => {
-//             dispatch(cropImageAC(cropProperties))
-//             dispatch(setToShare(true))
-//         }).catch(res => {
-//             dispatch(createErrorAC(res.response.data.message));
-//             dispatch(setToFetching(false));
-//         })
-//     }
-// }
-
-// export const getCroppedImageThunk = (filename) => {
-//     return (dispatch) => {
-//         return getCroppedImage(filename).then(res => {
-//           dispatch(setImagePathAC({imgPath: res.request.responseURL}))
-//           dispatch(setToFetching(false))
-//         })
-//     }
-// }
 
 export const deleteImagesThunk = (currentImgIndex: string) => {
     return (dispatch: any) => {

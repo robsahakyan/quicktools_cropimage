@@ -4,9 +4,17 @@ import { ActionTypeEnum } from '../../types/enums'
 import { FileUpload } from './fileUpload'
 import { MakeToEdit } from './makeToEdit'
 import styles from '../styles/section.module.css'
+import { ErrorComponent } from '../exception/error'
+import { LocalStorageService } from '../../shared/localStorageService'
 
 
 export const Section: any = (props: GlobalProps ) => {
+    if (typeof window !== 'undefined') {
+        window.onbeforeunload = function () {
+            LocalStorageService.clearAll()
+        }.bind(this);
+    }
+    
     return (
         <div className={styles.sectionPart}>
                 {props.isReadyToEdit ? 
@@ -16,32 +24,10 @@ export const Section: any = (props: GlobalProps ) => {
                 :
                     <FileUpload 
                         setToEdit = {props.setToEdit} 
-                        setImagePath={props.setImagePath} 
+                        uploadImage={props.uploadImage} 
                         setToFetching = {props.setToFetching}/>
                 }
-            {/* {error ? 
-            <ErrorComponent error ={error} deleteImg={deleteImg} aboutImage={aboutImage}
-            />  
-          : isReadyForShare ? 
-            <MakeForShare 
-              aboutImage={aboutImage} 
-              isFetching={isFetching}
-              deleteImg={deleteImg}
-              getResult={getResult}
-            /> :
-          isReadyForEdit ? 
-            <MakeToEdit 
-              aboutImage={aboutImage} 
-              isFetching={isFetching}
-              cropImage={cropImage}
-              setToFetching={setToFetching}
-            /> : 
-            <FileUpload 
-              setImagePath={setImagePath} 
-              setForEdit={setForEdit} 
-              setToFetching={setToFetching}
-            />
-          } */}
+                {props.error && <ErrorComponent />}
         </div>
     )
 }
