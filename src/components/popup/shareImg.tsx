@@ -9,18 +9,23 @@ import copy from '../../assets/images/share/copy.png'
 import apply from '../../assets/images/settings/apply.png'
 import QRCode from "react-qr-code";
 import close from '../../assets/images/share/close.png' 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export const ShareImagePopUp = (props: any) => {
+    const sharePartRef = useRef<HTMLDivElement>(null);
     const [isCopied, setToCopy] = useState(false);
+    useEffect(() => {
+        (sharePartRef.current as HTMLElement).style.visibility = "visible" 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
-    const copyHandler = (e: any) => {
+    const copyHandler = (e: MouseEvent) => {
         navigator.clipboard.writeText(props.aboutImage.imgPath)
         setToCopy(true)
     }
 
     return (
-        <div className={styles.sharePopUp}>
+        <div className={styles.sharePopUp} ref={sharePartRef}>
             <div className={styles.shareImgPart}>
                 <div>
                     <img src={props.aboutImage.imgPath} alt='imgForShare' className={styles.imgForShare} />
@@ -28,7 +33,7 @@ export const ShareImagePopUp = (props: any) => {
             </div>
             <div className={styles.shareOptionsPart}>
                 <div className={styles.shareDiv1}>
-                    <button className={styles.closeButton} onClick={() => props.setToOpenPopUp(false)}>
+                    <button className={styles.closeButton} onClick={() => props.openCurrentPopUp(null)}>
                         <Image src={close} alt='close' />
                     </button>
                     <div className={styles.shareHeader}>
@@ -42,7 +47,7 @@ export const ShareImagePopUp = (props: any) => {
                     </div>
                     <div className={styles.urlPart}>
                         <input type="text" disabled defaultValue={props.aboutImage.imgPath} className={styles.inputShareUrl}/>
-                        <button className={styles.copyButton} onClick={copyHandler} disabled={isCopied}>
+                        <button className={styles.copyButton} onClick={() => copyHandler} disabled={isCopied}>
                             {!isCopied ?
                             <> 
                                 <Image src={copy} alt='copy' />

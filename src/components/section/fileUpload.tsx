@@ -5,15 +5,9 @@ import descriptionImg from "../../assets/images/uploadPage/1.png";
 import dropboxImg from "../../assets/images/uploadPage/dropbox.svg";
 import googledriveImg from "../../assets/images/uploadPage/googledrive.svg";
 import { useRef } from "react";
-import type { SetToEdit, SetToFetching, UploadImage } from "../../types/actions";
+import { FileUploadProps } from "../../types/fileupload";
 
-type FileUploadProps = {
-    setToEdit: SetToEdit,
-    setImagePath: SetImagePath,
-    setToFetching: SetToFetching
-}
-
-export const FileUpload: any = (props: FileUploadProps) => {
+export const FileUpload = (props: FileUploadProps) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const clickOnTheInputFile = () => {
@@ -22,38 +16,22 @@ export const FileUpload: any = (props: FileUploadProps) => {
   const fileInputHandler = (e: React.SyntheticEvent<EventTarget>) => {
     const file = (e.target as HTMLFormElement).files[0];
     const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
 
-        fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+        props.uploadImage(fileReader.result);
+    }
     
-        fileReader.onload = () => {
-            props.setImagePath(fileReader.result);
-        }
-        
-        
-        props.setToEdit(true);
-        props.setToFetching(true);
+    props.setToEdit(true);
+    props.setToFetching(true);
     }
 
-
   const dragOver = (e: React.SyntheticEvent<EventTarget>) => {
-    // e.preventDefault();
     (e.target as HTMLFormElement).draggable = true;
-    // e.target.textContent = 'Release to Upload';
   };
 
   const dragLeaveHandler = (e: React.SyntheticEvent<EventTarget>) => {
-    // e.target.classList.remove('active');
-    // e.target.textContent = 'Drag & Drop';
     (e.target as HTMLFormElement).draggable = false;
-  };
-
-  const dropHandler = (e: React.SyntheticEvent<EventTarget>) => {
-    e.preventDefault();
-
-    // const file = e.dataTransfer.files[0];
-    // props.setImagePath(file);
-    // props.setToEdit(true);
-    // props.setToFetching(true);
   };
 
   return (
@@ -112,32 +90,6 @@ export const FileUpload: any = (props: FileUploadProps) => {
           </div>
         </div>
       </div>
-      {/* <div className='upPartUpload'>
-            <input type='file' accept='image/*' ref={inputFileRef} onChange={fileInputHandler} style={{"display": "none"}}></input>
-            <button className="btn" onClick={clickOnTheInputFile}>Select Image From Local Drive<span className="fas fa-chevron-right"></span></button>
-            <button className="btn">
-            <DropboxChooser
-                appKey={dropboxApyKey}
-                success={dropboxSuccess}
-                linkType="direct"
-                multiselect={false}
-                extensions={['.jpg','.png','.jpeg']} >Select Image From Dropbox<span className="fas fa-chevron-right"></span>
-            </DropboxChooser>
-            </button>
-
-            <button className="btn" onClick={handleOpenPicker}> Select Image From Google Drive <span className="fas fa-chevron-right"></span> </button>
-        </div> */}
-      {/* <div className="dragDiv">
-            <h3>Drop your file here</h3>
-            <div onDragOver={dragOver} onDragLeave={dragLeaveHandler} onDrop={dropHandler} className="drag-area">
-                <div className="icon">
-                <i className="fas fa-images"></i>
-                </div>
-
-                <span className="header">Drag & Drop</span>
-                <span className="support">Supports: JPEG, JPG, PNG</span>
-            </div> */}
-      {/* </div> */}
     </div>
   );
 };

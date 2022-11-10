@@ -1,19 +1,21 @@
+import { useEffect, useRef } from 'react'
 import styles from '../styles/startover.module.css'
 
 export const StartOver = (props: any) => {
+    const startOverRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        (startOverRef.current as HTMLElement).style.visibility = "visible" 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
+
     const startOverHandler = () => {
-            if (window.localStorage.getItem('1')) {
-                window.localStorage.removeItem('1')
-                window.location.reload()
-            }
-
+        window.location.reload()
     }
-
     const closePopUp = () => {
-        props.popUpRef.current.style.visibility = "hidden";
+        props.openCurrentPopUp(null);
     }
     return (
-        <div className={styles.startoverWindow} ref={props.popUpRef}>
+        <div className={styles.startoverWindow} ref={startOverRef}>
             <div className={styles.startOverDiv1}>
                 Start over with a new file?
             </div>

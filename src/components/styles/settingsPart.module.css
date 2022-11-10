@@ -156,6 +156,10 @@
   display: flex;
 }
 
+.settingDiv5Button:disabled {
+  opacity: 0.5;
+}
+
 .settingDiv5Button {
   width: 100%;
 

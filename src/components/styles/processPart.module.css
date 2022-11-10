@@ -6,7 +6,6 @@
 }
 
 .makeToEdit {
-  max-width: 1440px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   margin: 0 auto;
@@ -58,8 +57,9 @@
   gap: 10px;
 }
 
-.leftPointerPart,
-.rightPointerPart {
+
+.processActionButtons:disabled {
+  cursor: unset;
   opacity: 0.5;
 }
 
@@ -122,7 +122,6 @@
 
 .parentImgForCrop {
   min-width: 500px;
-  min-height: 500px;
   max-height: 500px;
   object-fit: contain;
 }

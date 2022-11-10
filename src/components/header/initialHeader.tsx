@@ -1,17 +1,18 @@
 import Image  from 'next/image'
 import styles from '../styles/header.module.css'
-import colorPart from '../../assets/images/header/color.png'
-import convertPart from '../../assets/images/header/convert.png'
-import designPart from '../../assets/images/header/design.png'
-import imagesPart from '../../assets/images/header/images.png'
-import pdfPart from '../../assets/images/header/pdf.png'
-import quickToolPart from '../../assets/images/header/quickTool.png'
-import searchIcon from '../../assets/images/header/search.png'
-import shareIcon from '../../assets/images/header/shared.png'
-import videosPart from '../../assets/images/header/videos.png'
-import textPart from '../../assets/images/header/text.png'
+import colorPart from '../../assets/images/header/color.svg'
+import convertPart from '../../assets/images/header/convert.svg'
+import designPart from '../../assets/images/header/design.svg'
+import imagesPart from '../../assets/images/header/images.svg'
+import pdfPart from '../../assets/images/header/pdf.svg'
+import quickToolPart from '../../assets/images/header/quickTool.svg'
+import searchIcon from '../../assets/images/header/search.svg'
+import shareIcon from '../../assets/images/header/shared.svg'
+import videosPart from '../../assets/images/header/videos.svg'
+import textPart from '../../assets/images/header/text.svg'
+import { NextPage } from 'next'
 
-export const InitialHeader: any = () => {
+export const InitialHeader: NextPage = () => {
     return (
         <header className={styles.initialHeader}>
             <div className={styles.headerPart1}>

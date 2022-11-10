@@ -1,13 +1,11 @@
-import type { NextPage } from 'next'
-import { GlobalProps } from '../../../pages'
-import { ActionTypeEnum } from '../../types/enums'
 import { FileUpload } from './fileUpload'
 import { MakeToEdit } from './makeToEdit'
 import styles from '../styles/section.module.css'
 import { ErrorComponent } from '../exception/error'
 import { LocalStorageService } from '../../shared/localStorageService'
+import { GlobalProps } from '../../types/globalProps'
 
-export const Section: any = (props: GlobalProps ) => {
+export const Section = (props: GlobalProps ) => {
     if (typeof window !== 'undefined') {
         window.onbeforeunload = function () {
             LocalStorageService.clearAll()

@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { ProcessPart } from "./processPart";
-//import ReactCrop from 'react-image-crop'
 import styles from "../styles/processPart.module.css";
 import { SettingsPart } from "./settingsPart";
-//import {Loader} from "../../shared/loader.jsx"
+import { GlobalProps } from "../../types/globalProps";
 
-export const MakeToEdit: any = (props: any) => {
+export const MakeToEdit = (props: GlobalProps) => {
     const [isEnabled, setToCropBut] = useState<boolean>(false);
 
     return (

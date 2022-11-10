@@ -29,8 +29,12 @@ export class LocalStorageService {
         return 0;
     }
 
-    static getById(index: number) {
-        return window.localStorage.getItem(index.toString())
+    static getById(index: number): string | null {
+        let result = window.localStorage.getItem(index.toString());
+        if (result) {
+            return result;
+        }
+        return null
     }
 
     static clearAll() {

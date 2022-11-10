@@ -24,9 +24,9 @@ export const changeCropSizes = (target: string, imgProperties: {offsetHeight: nu
         }
     } else {
         if (aspect >= 1) {
-            y = 0;
             width = offsetHeight;
             height = Math.round(width * 1 / aspect);
+            y = Math.round((offsetHeight - height) / 2)
             x = Math.round((offsetWidth - width) / 2)
         } else {
             y = 0;
@@ -69,14 +69,17 @@ function decisionOfAspect(target: string): number | undefined {
 }
 
 
-export function setDefaultCustomVals(imgProperties: {offsetHeight: number, offsetWidth: number }) {
+export function setDefaultCustomVals(imgProperties: {offsetHeight: number | null, offsetWidth: number | null }) {
     const {offsetHeight, offsetWidth } = imgProperties;
-    return {
-        unit: 'px',
-        x: Math.round(offsetWidth / 4),
-        y: Math.round(offsetHeight / 4),
-        width: Math.round(offsetWidth / 2),
-        height: Math.round(offsetHeight / 2)
+
+    if (offsetHeight && offsetWidth) {
+        return {
+            unit: 'px',
+            x: Math.round(offsetWidth / 4),
+            y: Math.round(offsetHeight / 4),
+            width: Math.round(offsetWidth / 2),
+            height: Math.round(offsetHeight / 2)
+        }
     }
 }
 

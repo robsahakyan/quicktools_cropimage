@@ -1,4 +1,5 @@
-import { sendImageRequest, deleteImg } from "../../api/api";
+import { Dispatch } from "react";
+import { Action } from "redux";
 import { LocalStorageService } from "../../shared/localStorageService";
 import { ActionTypeEnum } from "../../types/enums";
 
@@ -8,14 +9,15 @@ const CHANGE_CROP_COORDINATES = ActionTypeEnum.CHANGE_CROP_COORDINATES;
 const TOGGLE_IS_FETCHING = ActionTypeEnum.TOGGLE_IS_FETCHING;
 const SET_ERRORS = ActionTypeEnum.SET_ERRORS;
 const SET_FOR_SHARE = ActionTypeEnum.SET_FOR_SHARE;
+const OPEN_POP_UP = ActionTypeEnum.OPEN_POP_UP;
 const SET_FOR_EDIT = ActionTypeEnum.SET_FOR_EDIT;
 const CHANGE_CROP_OPTIONS = ActionTypeEnum.CHANGE_CROP_OPTIONS
 const SET_IMAGE_PROPERTIES = ActionTypeEnum.SET_IMAGE_PROPERTIES;
 
 const initialState = {
     aboutImage: {
-        imgPath: null,
-        currentImgIndex: null,
+        imgPath: "",
+        currentImgIndex: 0,
        
     },
     imageProperties: {
@@ -26,10 +28,10 @@ const initialState = {
     isReadyToShare: false,
     cropProperties: {
         unit: 'px',
-        x: null,
-        y: null,
-        width: null,
-        height: null
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0
     },
     cropOptions: {
         custom: true,
@@ -42,7 +44,8 @@ const initialState = {
         sixteenInNine: false
     },
     isFetching: false,
-    error: null
+    error: null,
+    popUpIsOpened: null,
 };
 
 export const imageReducer = (state = initialState, action: any) => {
@@ -85,6 +88,11 @@ export const imageReducer = (state = initialState, action: any) => {
                 ...state,
                 isReadyToEdit: action.isReadyToEdit
             }
+        case OPEN_POP_UP:
+            return {
+                ...state,
+                popUpIsOpened: action.popUpNum
+            }
         case SET_FOR_SHARE: 
             return {
                 ...state,
@@ -101,13 +109,13 @@ export const setToFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING
 export const setToEdit = (isReadyToEdit: boolean) => ({type: SET_FOR_EDIT, isReadyToEdit})
 export const setToShare = (isReadyToShare: boolean) => ({type: SET_FOR_SHARE, isReadyToShare})
 export const createErrorAC = (error: string) => ({type: SET_ERRORS, error})
+export const openCurrentPopUp = (popUpNum: number) => ({type: OPEN_POP_UP, popUpNum})
 export const setImagePropertiesAC = (imgOptions: object) => ({type: SET_IMAGE_PROPERTIES, imgOptions})
 export const changeOptionsAC = (cropOptions: object) => ({type: CHANGE_CROP_OPTIONS, cropOptions})
 
-export const uploadImage = (fileAsBinaryString: any) => {
-    return (dispatch: any) => {
+export const uploadImage = (fileAsBinaryString: string) => {
+    return (dispatch: Dispatch<any>) => {
         const singleImg = new LocalStorageService(fileAsBinaryString);
-        console.log(singleImg)
         if (singleImg) {
             singleImg.save()
             dispatch(setImagePathAC(singleImg));
@@ -115,11 +123,5 @@ export const uploadImage = (fileAsBinaryString: any) => {
         } else {
             dispatch(createErrorAC('Something went wrong!'))
         }
-    }
-}
-
-export const deleteImagesThunk = (currentImgIndex: string) => {
-    return (dispatch: any) => {
-        return deleteImg(currentImgIndex)
     }
 }

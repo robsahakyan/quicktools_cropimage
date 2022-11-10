@@ -6,10 +6,8 @@ let rootReducer = combineReducers({
     image: imageReducer
 })
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 
 if (typeof window !== "undefined") {
     window.store = store
 }
-
-export default store

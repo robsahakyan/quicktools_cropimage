@@ -4,7 +4,13 @@ export enum ActionTypeEnum {
     CHANGE_CROP_COORDINATES = "CHANGE_CROP_COORDINATES",
     TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING",
     SET_ERRORS = "SET_ERRORS",
+    OPEN_POP_UP = "OPEN_POP_UP",
     SET_FOR_SHARE = "SET_FOR_SHARE",
     SET_FOR_EDIT = "SET_FOR_EDIT",
     CHANGE_CROP_OPTIONS = "CHANGE_CROP_OPTIONS"
+}
+
+export enum UnitType {
+    'PX' = 'px',
+    '%' = '%'
 }
