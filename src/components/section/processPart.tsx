@@ -17,7 +17,6 @@ import { LocalStorageService } from '../../shared/localStorageService';
 import { ProcessPartProps } from '../../types/processPartProps';
 
 export const ProcessPart = (props: ProcessPartProps ) => {
-  const popUpRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
   const setToCropImage = (e: ChangeEvent) => {
@@ -45,8 +44,8 @@ export const ProcessPart = (props: ProcessPartProps ) => {
     }
     async function cropHandler(e: any) {
         imageRef.current as HTMLElement;
-        props.setToFetching(true)
         if (imageRef && props.cropProperties.width && props.cropProperties.height) {
+            props.setToFetching(true)
             props.uploadImage(await getCroppedImg(
               imageRef.current,
               props.cropProperties,
@@ -200,7 +199,7 @@ export const ProcessPart = (props: ProcessPartProps ) => {
               <div className={styles.imgPart}>
                 <ReactCrop
                   crop={props.cropProperties}
-                  onChange={() => setToCropImage}
+                  onChange={(e) => setToCropImage(e)}
                   className={styles.parentImgForCrop}
                   disabled={!props.isEnabled}
                 >
